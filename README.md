@@ -8,8 +8,11 @@ target : prerequisites
 ## Time Track:
 ### 10_day_pratice
     - 07/24/2025: 
-        - day1基本c++语法 (annotate.cpp union.cpp Makefile)
-        - day2递归，结构体，枚举，静态变量等 (enum.cpp struct.cpp Makefile)
+        - day1 base c++ grammer(annotate.cpp union.cpp Makefile)
+        - day2 recursion, struct, enum, static variable etc. (enum.cpp struct.cpp Makefile)
+
+### CPP Core Programming
+    - 01/03/2026: add project
 
 ### Speach Manager
     - 01/02/2026: speech_manager project
