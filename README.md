@@ -10,3 +10,6 @@ target : prerequisites
     - 07/24/2025: 
         - day1基本c++语法 (annotate.cpp union.cpp Makefile)
         - day2递归，结构体，枚举，静态变量等 (enum.cpp struct.cpp Makefile)
+
+### Speach Manager
+    - 01/02/2026: speech_manager project
