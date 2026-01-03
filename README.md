@@ -15,6 +15,8 @@ target : prerequisites
     - 01/02/2026: speech_manager project
     - 01/03/2026: finish project
 
+### Work Manager
+    - 01/03/2026: add worker manager project
 
 ### Algorithm 
     - 01/03/2026: add sort dir and code
