@@ -11,7 +11,7 @@ target : prerequisites
         - day1 base c++ grammer(annotate.cpp union.cpp Makefile)
         - day2 recursion, struct, enum, static variable etc. (enum.cpp struct.cpp Makefile)
 
-### CPP Core Programming
+### CPP Programming
     - 01/03/2026: add project
 
 ### Speach Manager
