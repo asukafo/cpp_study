@@ -23,3 +23,6 @@ target : prerequisites
 
 ### Algorithm 
     - 01/03/2026: add sort dir and code
+
+### Design Pattern Pratice
+    - 05/22/2026: add design pattern pratice
