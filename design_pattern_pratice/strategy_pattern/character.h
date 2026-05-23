@@ -1,37 +1,37 @@
-#ifndef __CHARACTER_H__
-#define __CHARACTER_H__
+#ifndef CHARACTER_H
+#define CHARACTER_H
 
 #include <memory>
 #include <iostream>
 
-#include "weapon.h"
+#include "iweapon.h"
 
-// Abstrace Base Class
+// Abstract Base Class
 class Character
 {
 public:
-    explicit Character(std::unique_ptr<Weapon> weapon)
+    explicit Character(std::unique_ptr<IWeapon> weapon)
         : weapon_(std::move(weapon)) {}
     virtual ~Character() = default;
 
-    void setWeapon(std::unique_ptr<Weapon> weapon)
+    void setWeapon(std::unique_ptr<IWeapon> weapon)
     {
         weapon_ = std::move(weapon);
     }
 
     virtual void fight() const = 0;
-    virtual std::string getName() const = 0;
+    [[nodiscard]] virtual std::string getName() const = 0;
 
 protected:
-    std::unique_ptr<Weapon> weapon_;
+    std::unique_ptr<IWeapon> weapon_;
 };
 
 
 // Concrete character: Knight
-class Knight : public Character
+class Knight final : public Character
 {
 public:
-    explicit Knight(std::unique_ptr<Weapon> weapon)
+    explicit Knight(std::unique_ptr<IWeapon> weapon)
         : Character(std::move(weapon)) {}
 
     void fight() const override
@@ -47,10 +47,10 @@ public:
 };
 
 // Concrete character: Archer
-class Archer : public Character
+class Archer final : public Character
 {
 public:
-    explicit Archer(std::unique_ptr<Weapon> weapon)
+    explicit Archer(std::unique_ptr<IWeapon> weapon)
         : Character(std::move(weapon)) {}
 
     void fight() const override
@@ -66,15 +66,15 @@ public:
 };
 
 // Concrete character: Barbarian
-class Barbarian : public Character
+class Barbarian final : public Character
 {
 public: 
-    explicit Barbarian(std::unique_ptr<Weapon> weapon)
+    explicit Barbarian(std::unique_ptr<IWeapon> weapon)
         : Character(std::move(weapon)) {}
 
     void fight() const override 
     {
-        std::cout << "Barbarian";
+        std::cout << "Barbarian ";
         weapon_->attack();
     }
 
@@ -84,4 +84,4 @@ public:
     }
 };
 
-#endif // __CHARACTER_H__
+#endif // CHARACTER_H

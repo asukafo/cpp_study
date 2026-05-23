@@ -1,21 +1,21 @@
-#ifndef __WEAPON_H__
-#define __WEAPON_H__
+#ifndef IWEAPON_H
+#define IWEAPON_H
 
 #include <iostream>
 #include <string>
 
-// virtual Class Interface
-class Weapon
+// Interface class (pure interface: all functions = 0, no member variables)
+class IWeapon
 {
-public: 
-    virtual ~Weapon() = default;
+public:
+    virtual ~IWeapon() = default;
     virtual void attack() const = 0;
-    virtual std::string getName() const = 0;
+    [[nodiscard]] virtual std::string getName() const = 0;
 };
 
-class Sword : public Weapon
+class Sword final : public IWeapon
 {
-public: 
+public:
     void attack() const override
     {
         std::cout << "Swings a sword! Slash!" << std::endl;
@@ -28,9 +28,9 @@ public:
 };
 
 
-class Bow : public Weapon
+class Bow final : public IWeapon
 {
-public: 
+public:
     void attack() const override
     {
         std::cout << "Shoots an arrow! Twang! " << std::endl;
@@ -42,7 +42,7 @@ public:
     }
 };
 
-class Axe : public Weapon
+class Axe final : public IWeapon
 {
 public:
     void attack() const override
@@ -50,11 +50,11 @@ public:
         std::cout << "Swings a heavy axe! Crush!" << std::endl;
     }
 
-    std::string getName() const override 
+    std::string getName() const override
     {
         return "Axe";
     }
 };
 
 
-#endif // __WEAPON_H__
+#endif // IWEAPON_H

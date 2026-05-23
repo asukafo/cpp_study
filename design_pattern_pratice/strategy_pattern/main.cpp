@@ -2,7 +2,7 @@
 #include <memory>
 #include <vector>
 
-#include "weapon.h"
+#include "iweapon.h"
 #include "character.h"
 
 int main()

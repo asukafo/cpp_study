@@ -12,7 +12,7 @@ all: $(TARGET)
 $(TARGET): $(OBJ)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-$(OBJ): $(SRC) weapon.h character.h
+$(OBJ): $(SRC) iweapon.h character.h
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 clean:
