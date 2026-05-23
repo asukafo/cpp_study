@@ -7,6 +7,10 @@
 
 int main()
 {
+    std::cout << "Strategy Pattern: defines a family of algorithms, encapsulates each one,\n"
+              << "and makes them interchangeable. Strategy lets the algorithm vary\n"
+              << "independently from clients that use it.\n"
+              << std::endl;
     std::cout << "=== Strategy Pattern: Character Classes ===" << std::endl;
 
     // Each character type is its own class
@@ -28,14 +32,14 @@ int main()
 
     // Polymorphism: treat all characters uniformly
     std::cout << "\n--- Polymorphic fight ---" << std::endl;
-    std::vector<std::unique_ptr<Character>> party;
-    party.push_back(std::make_unique<Knight>(std::make_unique<Sword>()));
-    party.push_back(std::make_unique<Archer>(std::make_unique<Bow>()));
-    party.push_back(std::make_unique<Barbarian>(std::make_unique<Axe>()));
+    std::vector<std::unique_ptr<Character>> team;
+    team.push_back(std::make_unique<Knight>(std::make_unique<Sword>()));
+    team.push_back(std::make_unique<Archer>(std::make_unique<Bow>()));
+    team.push_back(std::make_unique<Barbarian>(std::make_unique<Axe>()));
 
-    for (const auto& c : party) 
+    for (const auto& m : team) 
     {
-        c->fight();
+        m->fight();
     }
 
     return 0;

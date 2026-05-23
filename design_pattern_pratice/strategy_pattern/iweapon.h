@@ -4,55 +4,40 @@
 #include <iostream>
 #include <string>
 
-// Interface class (pure interface: all functions = 0, no member variables)
+// Abstract Interface Class
 class IWeapon
 {
 public:
     virtual ~IWeapon() = default;
-    virtual void attack() const = 0;
-    [[nodiscard]] virtual std::string getName() const = 0;
+    virtual void useWeapon() const = 0;
 };
 
-class Sword final : public IWeapon
+// Concrete Class
+class Sword : public IWeapon
 {
 public:
-    void attack() const override
+    void useWeapon() const override
     {
         std::cout << "Swings a sword! Slash!" << std::endl;
     }
-
-    std::string getName() const override
-    {
-        return "Sword";
-    }
 };
 
 
-class Bow final : public IWeapon
+class Bow : public IWeapon
 {
 public:
-    void attack() const override
+    void useWeapon() const override
     {
         std::cout << "Shoots an arrow! Twang! " << std::endl;
     }
-
-    std::string getName() const override
-    {
-        return "Bow";
-    }
 };
 
-class Axe final : public IWeapon
+class Axe : public IWeapon
 {
 public:
-    void attack() const override
+    void useWeapon() const override
     {
         std::cout << "Swings a heavy axe! Crush!" << std::endl;
-    }
-
-    std::string getName() const override
-    {
-        return "Axe";
     }
 };
 

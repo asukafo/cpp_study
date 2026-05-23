@@ -20,7 +20,6 @@ public:
     }
 
     virtual void fight() const = 0;
-    [[nodiscard]] virtual std::string getName() const = 0;
 
 protected:
     std::unique_ptr<IWeapon> weapon_;
@@ -37,12 +36,7 @@ public:
     void fight() const override
     {
         std::cout << "Knight ";
-        weapon_->attack();
-    }
-    
-    std::string getName() const override
-    {
-        return "Knight";
+        weapon_->useWeapon();
     }
 };
 
@@ -56,12 +50,7 @@ public:
     void fight() const override
     {
         std::cout << "Archer ";
-        weapon_->attack();
-    }
-
-    std::string getName() const override
-    {
-        return "Archer";
+        weapon_->useWeapon();
     }
 };
 
@@ -75,12 +64,7 @@ public:
     void fight() const override 
     {
         std::cout << "Barbarian ";
-        weapon_->attack();
-    }
-
-    std::string getName() const override 
-    {
-        return "Barbarian";
+        weapon_->useWeapon();
     }
 };
 
