@@ -26,3 +26,5 @@ target : prerequisites
 
 ### Design Pattern Pratice
     - 05/22/2026: add design pattern pratice
+        - strategy_pattern: defines a family of algorithms, encapsulates each one, and makes them interchangeable
+        - observer_pattern: defines a one-to-many dependency between objects so that when one object changes state, all of its dependents are notified and updated automatically

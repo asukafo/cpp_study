@@ -12,7 +12,7 @@ all: $(TARGET)
 $(TARGET): $(OBJ)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-$(OBJ): $(SRC)
+$(OBJ): $(SRC) iobserver.h isubject.h weather_data.h displays.h
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 clean: 
