@@ -1,7 +1,7 @@
 #ifndef IOBSERVER_H
 #define IOBSERVER_H
 
-// Interface class
+// Interface Class
 class IObserver
 {
 public:

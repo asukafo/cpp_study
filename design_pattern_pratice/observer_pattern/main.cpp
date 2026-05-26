@@ -13,7 +13,7 @@ int main()
 
     WeatherData weatherData;
 
-    CurrentConditionsDisplay currentDisplay;
+    CurrentConditionDisplay currentDisplay;
     StatisticsDisplay statisticsDisplay;
     ForecastDisplay forecastDisplay;
 
