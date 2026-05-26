@@ -5,3 +5,4 @@
 *.out
 design_pattern_pratice/strategy_pattern/strategy_pattern
 design_pattern_pratice/observer_pattern/observer_pattern
+design_pattern_pratice/decorator_pattern/decorator_pattern
