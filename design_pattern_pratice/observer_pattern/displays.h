@@ -1,40 +1,49 @@
 #ifndef DISPLAYS_H
 #define DISPLAYS_H
 
-#include "iobserver.h"
 #include <iostream>
 
-// Concrete Observer: display current conditions
-class CurrentConditionsDisplay final : public IObserver
+#include "iobserver.h"
+
+
+// Concrete Class
+class CurrentConditionDisplay : public IObserver
 {
 public:
-    void update(float temperature, float humidity, float /*pressure*/) override
+    void update(float temperature, float humidity, float pressure) override
     {
         temperature_ = temperature;
-        humidity_ = humidity;
+        humidity_    = humidity;
+        pressure_    = pressure;
         display();
     }
 
     void display() const
     {
-        std::cout << "Current conditions: "
+        std::cout << "Current Condition: "
                   << temperature_ << "C degrees, "
-                  << humidity_ << "% humidity"
+                  << humidity_ << "% humidity, "
+                  << pressure_ << "Pa"
                   << std::endl;
     }
 
 private:
     float temperature_ = 0.0f;
-    float humidity_ = 0.0f;
+    float humidity_    = 0.0f;
+    float pressure_    = 0.0f;
 };
 
-// Concrete Observer: display statistics (min/max/avg temperature)
-class StatisticsDisplay final : public IObserver
+
+class StatisticsDisplay : public IObserver
 {
 public:
-    void update(float temperature, float /*humidity*/, float /*pressure*/) override
+    void update(float temperature, float humidity, float pressure) override
     {
-        if (count_ == 0)
+        temperature_ = temperature;
+        humidity_    = humidity;
+        pressure_    = pressure;
+
+        if (0 == count_)
         {
             min_ = max_ = temperature;
         }
@@ -45,12 +54,13 @@ public:
         }
         sum_ += temperature;
         ++count_;
+
         display();
     }
 
     void display() const
     {
-        std::cout << "Temperature stats: "
+        std::cout << "Temperature Statistics: "
                   << "min " << min_ << "C / "
                   << "avg " << (sum_ / count_) << "C / "
                   << "max " << max_ << "C"
@@ -58,18 +68,27 @@ public:
     }
 
 private:
+    float temperature_ = 0.0f;
+    float humidity_    = 0.0f;
+    float pressure_    = 0.0f;
+
     float min_ = 0.0f;
     float max_ = 0.0f;
     float sum_ = 0.0f;
     int count_ = 0;
 };
 
-// Concrete Observer: display forecast based on pressure change
-class ForecastDisplay final : public IObserver
+
+// Concrete Observer
+class ForecastDisplay : public IObserver
 {
 public:
-    void update(float /*temperature*/, float /*humidity*/, float pressure) override
+    void update(float temperature, float humidity, float pressure) override
     {
+        temperature_ = temperature;
+        humidity_    = humidity;
+        pressure_    = pressure;
+
         float last = lastPressure_;
         lastPressure_ = pressure;
 
@@ -79,6 +98,7 @@ public:
             forecast_ = "More of the same";
         else
             forecast_ = "Watch out for cooler, rainy weather";
+        
         display();
     }
 
@@ -88,6 +108,10 @@ public:
     }
 
 private:
+    float temperature_ = 0.0f;
+    float humidity_    = 0.0f;
+    float pressure_    = 0.0f;
+
     float lastPressure_ = 0.0f;
     const char *forecast_ = "No data yet";
 };
