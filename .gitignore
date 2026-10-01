@@ -25,3 +25,8 @@ design_pattern_pratice/template_method_pattern/template_method_pattern
 # modern cpp practice ch08: test binaries (test_class_*)，但保留 .cpp 源码
 cpp_programming/modern_cpp_from_zero_to_engineering_practice/ch08/test_class_*
 !cpp_programming/modern_cpp_from_zero_to_engineering_practice/ch08/test_class_*.cpp
+
+# ch10: xlog 库与测试二进制，保留源码
+cpp_programming/modern_cpp_from_zero_to_engineering_practice/ch10/test/test_*
+!cpp_programming/modern_cpp_from_zero_to_engineering_practice/ch10/test/test_*.cpp
+cpp_programming/modern_cpp_from_zero_to_engineering_practice/ch10/xlog/libxlog.a
