@@ -21,3 +21,7 @@ design_pattern_pratice/singleton_pattern/singleton_pattern
 design_pattern_pratice/state_pattern/state_pattern
 design_pattern_pratice/strategy_pattern/strategy_pattern
 design_pattern_pratice/template_method_pattern/template_method_pattern
+
+# modern cpp practice ch08: test binaries (test_class_*)，但保留 .cpp 源码
+cpp_programming/modern_cpp_from_zero_to_engineering_practice/ch08/test_class_*
+!cpp_programming/modern_cpp_from_zero_to_engineering_practice/ch08/test_class_*.cpp
