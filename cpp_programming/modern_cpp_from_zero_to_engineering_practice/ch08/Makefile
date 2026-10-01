@@ -1,22 +1,22 @@
-# ch08 测试 Makefile
-# 用法：
-#   make                # 编译全部测试（all）
-#   make test_class_copy # 只编译某一个测试
-#   make run            # 编译并依次运行全部测试
-#   make clean          # 清理编译产物
+# ch08 tests Makefile
+# Usage:
+#   make                 # build all tests (all)
+#   make test_class_copy # build a single test
+#   make run             # build and run all tests
+#   make clean           # remove build artifacts
 #
-# 扩展：新增 test_class_xxx.cpp 后无需修改本文件，会被自动纳入构建。
+# Extensible: drop in a new test_class_xxx.cpp and it is built automatically.
 
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra -g
 
-# 自动收集所有测试源文件，目标名 = 去掉 .cpp 后缀
+# collect all test sources; target name = source name without .cpp
 SRCS    = $(wildcard test_class_*.cpp)
 TARGETS = $(SRCS:.cpp=)
 
 all: $(TARGETS)
 
-# 模式规则：test_class_copy.cpp -> test_class_copy
+# pattern rule: test_class_copy.cpp -> test_class_copy
 %: %.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $<
 

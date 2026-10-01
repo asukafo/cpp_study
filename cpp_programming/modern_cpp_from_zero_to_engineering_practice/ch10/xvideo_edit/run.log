@@ -1,0 +1,10 @@
+void XVideoInput::Start(std::unique_ptr<XTask>)
+UserInput::Start()
+
+>>init task
+cv task
+test.mp4 out.mp4
+FFTask Start
+cmd:ffmpeg -y -nostdin  -i test.mp4 out.mp4 2>&1
+Start Cmd:ffmpeg -y -nostdin  -i test.mp4 out.mp4 2>&1
+%0total sec = 3 s

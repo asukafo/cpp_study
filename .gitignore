@@ -5,6 +5,7 @@
 
 # Build artifacts
 *.o
+*.d
 *.out
 design_pattern_pratice/adapter_pattern/adapter_pattern
 design_pattern_pratice/command_pattern/command_pattern
@@ -22,11 +23,16 @@ design_pattern_pratice/state_pattern/state_pattern
 design_pattern_pratice/strategy_pattern/strategy_pattern
 design_pattern_pratice/template_method_pattern/template_method_pattern
 
-# modern cpp practice ch08: test binaries (test_class_*)，但保留 .cpp 源码
+# ch08: test binaries (test_class_*), keep .cpp sources
 cpp_programming/modern_cpp_from_zero_to_engineering_practice/ch08/test_class_*
 !cpp_programming/modern_cpp_from_zero_to_engineering_practice/ch08/test_class_*.cpp
 
-# ch10: xlog 库与测试二进制，保留源码
+# ch10: xlog lib and test binaries, keep sources
 cpp_programming/modern_cpp_from_zero_to_engineering_practice/ch10/test/test_*
 !cpp_programming/modern_cpp_from_zero_to_engineering_practice/ch10/test/test_*.cpp
 cpp_programming/modern_cpp_from_zero_to_engineering_practice/ch10/xlog/libxlog.a
+cpp_programming/modern_cpp_from_zero_to_engineering_practice/ch10/xvideo_edit/xvideo_edit
+cpp_programming/modern_cpp_from_zero_to_engineering_practice/ch10/xvideo_edit/xvideo_edit.dSYM
+
+# ch10: test video files
+cpp_programming/modern_cpp_from_zero_to_engineering_practice/ch10/xvideo_edit/*.mp4

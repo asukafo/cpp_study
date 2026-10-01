@@ -16,14 +16,15 @@ static std::vector<std::string>Split(const std::string& s)
     }
     return vec;
 }
-void UserInput::Start(std::function<void()> init)
+void UserInput::Start(std::function<void(const std::vector<std::string>&)> init)
 {
     std::cout << "UserInput::Start()" << std::endl;
     while (!is_exit_)
     {
         std::string input;
         std::cout << "\n>>" << std::flush;
-        std::getline(std::cin, input);
+        if (!std::getline(std::cin, input))
+            break; // stdin closed (EOF)
         if (input.empty())continue;
         if (input == "exit")break;
         auto vec = Split(input);
@@ -35,7 +36,8 @@ void UserInput::Start(std::function<void()> init)
         //cv  -s test.mp4 -d test.avi
 
         std::string type = vec[0];
-        init();
+        if (init)
+            init(vec);
         for (int i = 1; i < vec.size(); i++)
         {
             // -s test.mp4 -p -d out.mp4
@@ -58,15 +60,17 @@ void UserInput::Start(std::function<void()> init)
                 std::cout << k << ":" << " " << std::endl;
                 //cout << k << endl;
             }
-            auto task = task_funcs_.find(type);
-            if (task == task_funcs_.end())
-            {
-                std::cout << type << " not support!" << std::endl;
-            }
-            else
-            {
-                task->second();
-            }
+        }
+
+        // run the task once per input line
+        auto task = task_funcs_.find(type);
+        if (task == task_funcs_.end())
+        {
+            std::cout << type << " not support!" << std::endl;
+        }
+        else
+        {
+            task->second();
         }
 
     }

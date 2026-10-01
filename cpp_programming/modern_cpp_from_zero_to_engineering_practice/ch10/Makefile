@@ -1,26 +1,25 @@
-# ch10 xlog 测试 Makefile
-# 用法：
-#   make                # 编译 xlog 静态库 + 全部测试
-#   make test/test_xlog # 只编译某一个测试
-#   make run            # 编译并依次运行全部测试
-#   make clean          # 清理编译产物
+# ch10 Makefile: xlog logging library + tests
+# Usage:
+#   make                # build xlog static lib + all tests
+#   make test/test_xlog # build a single test
+#   make run            # build and run all tests
+#   make clean          # remove build artifacts
 #
-# 扩展：
-#   - xlog/ 下新增 .cpp 自动纳入静态库 libxlog.a，无需修改本文件
-#   - test/ 下新增 test_*.cpp 自动纳入构建
+# Extensible: new .cpp under xlog/ are added to libxlog.a automatically;
+#             new test_*.cpp under test/ are built automatically.
 
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -Wextra -g -Ixlog -Itest
+CXXFLAGS = -std=c++17 -Wall -Wextra -g -MMD -MP -Ixlog -Itest
 
-# xlog 库：全部源码编译进静态库
+# xlog library: all sources compiled into a static library
 XLOG_DIR  = xlog
 XLOG_SRCS = $(wildcard $(XLOG_DIR)/*.cpp)
 XLOG_OBJS = $(XLOG_SRCS:.cpp=.o)
 XLOG_LIB  = $(XLOG_DIR)/libxlog.a
 
-# 测试：test/ 下每个 test_*.cpp 对应一个可执行文件
-TEST_SRCS = $(wildcard $(TEST_DIR)/test_*.cpp)
+# tests: each test_*.cpp under test/ corresponds to one executable
 TEST_DIR  = test
+TEST_SRCS = $(wildcard $(TEST_DIR)/test_*.cpp)
 TESTS     = $(patsubst $(TEST_DIR)/%.cpp,$(TEST_DIR)/%,$(TEST_SRCS))
 
 all: $(XLOG_LIB) $(TESTS)
@@ -34,6 +33,9 @@ $(XLOG_DIR)/%.o: $(XLOG_DIR)/%.cpp
 $(TEST_DIR)/%: $(TEST_DIR)/%.cpp $(XLOG_LIB)
 	$(CXX) $(CXXFLAGS) -o $@ $< $(XLOG_LIB)
 
+# auto-generated header dependencies
+-include $(XLOG_OBJS:.o=.d) $(TESTS:=.d)
+
 run: all
 	@for t in $(TESTS); do \
 		echo "=== $$t ==="; \
@@ -42,7 +44,7 @@ run: all
 	done
 
 clean:
-	rm -f $(XLOG_OBJS) $(XLOG_LIB) $(TESTS)
+	rm -f $(XLOG_OBJS) $(XLOG_OBJS:.o=.d) $(XLOG_LIB) $(TESTS) $(TESTS:=.d)
 	rm -rf $(addsuffix .dSYM,$(TESTS))
 
 .PHONY: all run clean

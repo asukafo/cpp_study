@@ -1,6 +1,6 @@
 /**
  * @file    test_class_copy.cpp
- * @brief   测试类的拷贝控制语义：拷贝构造、拷贝赋值、移动构造、移动赋值
+ * @brief   Tests for class copy control semantics: copy ctor, copy assignment, move ctor, move assignment
  * @author  asukaf
  * @date    2026-09-30
  *

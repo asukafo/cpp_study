@@ -3,8 +3,10 @@
 #include <iostream>
 #include <string>
 
-bool XExec::Start(const char* cmd)
+bool XExec::Start(const char* cmd,
+    std::function<void(const std::string&)> cb)
 {
+    cb_ = cb;
     std::cout << "Start Cmd:" << cmd << std::endl;
     auto fp = popen(cmd, "r");
     if (!fp)return false;
@@ -12,13 +14,11 @@ bool XExec::Start(const char* cmd)
 
     fut_ = std::async([fp,this] {
         std::string tmp;
-        char c = 0;
-        while (c = fgetc(fp))
+        int c = 0;
+        while ((c = fgetc(fp)) != EOF)
         {
-            if (c == EOF)break;
-
-            // /r �ص���ǰ�еĿ�ͷ
-            // /n ����һ�еĿ�ͷ 
+            // \r returns to start of current line
+            // \n goes to start of next line
             if (c == '\n' || c == '\r')
             {
                 //cout << tmp << endl;
@@ -27,6 +27,8 @@ bool XExec::Start(const char* cmd)
                     std::lock_guard<std::mutex> lock(mux_);
                     outs_.push(tmp);
                 }
+                if (cb_)
+                    cb_(tmp);
 
                 tmp = "";
                 continue;

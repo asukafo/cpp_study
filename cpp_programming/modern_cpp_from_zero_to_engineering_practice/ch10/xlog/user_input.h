@@ -4,11 +4,12 @@
 #include "xlog.h"
 #include <map>
 #include <string>
+#include <vector>
 #include <functional>
 class XLOG_API UserInput
 {
 public:
-    void Start(std::function<void()> init = [] {});
+    void Start(std::function<void(const std::vector<std::string>&)> init = nullptr);
     void Stop() { is_exit_ = true; }
 
     UserInput& Reg(std::string key,
