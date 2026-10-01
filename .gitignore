@@ -36,3 +36,7 @@ cpp_programming/modern_cpp_from_zero_to_engineering_practice/ch10/xvideo_edit/xv
 
 # ch10: test video files
 cpp_programming/modern_cpp_from_zero_to_engineering_practice/ch10/xvideo_edit/*.mp4
+
+# ch09: program binaries (digit-prefixed names), keep .cpp sources
+cpp_programming/modern_cpp_from_zero_to_engineering_practice/ch09/[0-9]*
+!cpp_programming/modern_cpp_from_zero_to_engineering_practice/ch09/[0-9]*.cpp
